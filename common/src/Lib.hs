@@ -10,7 +10,8 @@ import           GHC.Generics
 import           Servant.API
 
 type ItemApi =
-  "item" :> Get '[JSON] [Item]
+         Summary "Return list of items"
+         :> "item" :> Get '[JSON] [Item]
     :<|> "item" :> Capture "itemId" Integer :> Get '[JSON] Item
     :<|> Raw
 
