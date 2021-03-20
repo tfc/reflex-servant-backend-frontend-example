@@ -16,6 +16,7 @@ executable backend
                      , common
                      , optparse-applicative
                      , servant
+                     , servant-openapi3
                      , servant-server
                      , wai
                      , warp

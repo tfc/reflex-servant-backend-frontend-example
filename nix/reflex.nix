@@ -5,9 +5,16 @@ in
 reflex-platform.project ({ pkgs, ... }: {
   withHoogle = false;
 
-  overrides = self: super: {
-    servant-reflex = self.callPackage ./servant-reflex.nix { };
-  };
+  overrides = self: super: let
+    inherit (builtins) attrNames head readDir;
+    extLibs = ./external-libs;
+    libNames = attrNames (readDir extLibs);
+    toCallPackage = nixFile: let
+      name = head (pkgs.lib.splitString ".nix" nixFile);
+      path = extLibs + "/${nixFile}";
+    in
+      { ${name} = self.callPackage path {}; };
+  in builtins.foldl' (l: r: l // toCallPackage r) {} libNames;
 
   packages = {
     common = ../common;

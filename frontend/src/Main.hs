@@ -11,7 +11,7 @@ module Main where
 import           Control.Monad.Fix (MonadFix)
 import           Data.Proxy
 import qualified Data.Text         as T
-import           Lib               hiding (main)
+import           Lib
 import           Reflex.Dom
 import           Servant.API
 import           Servant.Reflex
@@ -44,9 +44,11 @@ w :: forall t m .
   )
   => m ()
 w = do
-  --let url = constDyn (BaseFullUrl Http "localhost" 3000 "/")
-  let url = constDyn (BasePath "/")
-  let (listItems :<|> getItem :<|> _) = client itemApi (Proxy :: Proxy m) (Proxy :: Proxy ()) url
+
+  let (listItems :<|> getItem :<|> _) = client (Proxy :: Proxy ItemApi)
+                                               (Proxy :: Proxy m)
+                                               (Proxy :: Proxy ())
+                                               (constDyn (BasePath "/"))
   el "div" $ do
     -- create button that triggers the request for the list
     itemButton <- divClass "button" $ button "List items"

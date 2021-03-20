@@ -1,7 +1,7 @@
 let
-  sources = import ./nix/sources.nix;
+  sources = import ./sources.nix;
   pkgs = (import sources.reflex-platform {}).nixpkgs;
-  reflexProject = import ./nix/reflex.nix;
+  reflexProject = import ./reflex.nix;
   inherit (reflexProject.ghcjs) frontend;
   inherit (reflexProject.ghc)   backend;
 in
