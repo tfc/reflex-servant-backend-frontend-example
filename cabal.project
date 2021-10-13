@@ -1,4 +1,14 @@
 packages:
-  common/
-  backend/
-  frontend/
+  backend
+  common
+  frontend
+
+allow-newer:
+  servant-reflex:servant,
+  servant-auth
+
+source-repository-package
+  type: git
+  location: https://github.com/imalsogreg/servant-reflex
+  tag: 20e2621cc2eca5fe38f8a01c7a159b0b9be524ea
+  --sha256: jyyTKPLKFeqq/R/F7kQ0cv/Fn8nQIKkAkT2N5wmYHis=
