@@ -6,15 +6,11 @@ reflex-platform.project ({ pkgs, ... }: {
   withHoogle = false;
 
   overrides = self: super: let
-    inherit (builtins) attrNames head readDir;
-    extLibs = ./external-libs;
-    libNames = attrNames (readDir extLibs);
-    toCallPackage = nixFile: let
-      name = head (pkgs.lib.splitString ".nix" nixFile);
-      path = extLibs + "/${nixFile}";
-    in
-      { ${name} = self.callPackage path {}; };
-  in builtins.foldl' (l: r: l // toCallPackage r) {} libNames;
+    inherit (pkgs.haskell.lib) markUnbroken doJailbreak dontCheck;
+  in {
+    servant-reflex = doJailbreak (markUnbroken (super.servant-reflex));
+    servant-server = dontCheck super.servant-server;
+  };
 
   packages = {
     common = ../common;

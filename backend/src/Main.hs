@@ -5,7 +5,7 @@
 
 module Main where
 
-import           Lib                      hiding (main)
+import           Lib
 import           Network.Wai.Handler.Warp
 import qualified Options.Applicative      as O
 import           Servant
