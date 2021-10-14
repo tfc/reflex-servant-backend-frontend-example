@@ -32,17 +32,17 @@ rec {
 
   shells = pkgs.recurseIntoAttrs {
     ghc = hnixProject.shellFor (shellSettings // {
-      packages = ps: with ps; [
-        frontend
-        backend
-        common
+      packages = ps: [
+        ps.frontend
+        ps.backend
+        ps.common
       ];
     });
 
     ghcjs = hnixProject.shellFor (shellSettings // {
-      packages = ps: with ps; [
-        frontend
-        common
+      packages = ps: [
+        ps.frontend
+        ps.common
       ];
       crossPlatforms = ps: with ps; [ ghcjs ];
     });
