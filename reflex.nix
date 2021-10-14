@@ -10,7 +10,17 @@ let
         inherit (pkgs.haskell.lib) markUnbroken doJailbreak dontCheck;
       in
       {
-        servant-reflex = doJailbreak (markUnbroken (super.servant-reflex));
+        servant-reflex =
+          let
+            src = pkgs.fetchFromGitHub
+              {
+                owner = "imalsogreg";
+                repo = "servant-reflex";
+                rev = "20e2621cc2eca5fe38f8a01c7a159b0b9be524ea";
+                sha256 = "jyyTKPLKFeqq/R/F7kQ0cv/Fn8nQIKkAkT2N5wmYHis=";
+              };
+          in
+          self.callCabal2nix "servant-reflex" src { };
         servant-server = dontCheck super.servant-server;
       };
 
@@ -30,7 +40,7 @@ let
   inherit (project.ghc) backend;
 in
 {
-  inherit project frontend backend;
+  inherit frontend backend;
 
   backend-runner = pkgs.writeShellScriptBin "backend-example" ''
     ${backend}/bin/backend ${frontend}/bin/frontend.jsexe
