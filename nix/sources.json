@@ -10,5 +10,17 @@
         "type": "tarball",
         "url": "https://github.com/input-output-hk/haskell.nix/archive/3720ee48fde907036a2be5081cceac1e1d360f25.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "reflex-platform": {
+        "branch": "develop",
+        "description": "A curated package set and set of tools that let you build Haskell packages so they can run on a variety of platforms. reflex-platform is built on top of the nix package manager.",
+        "homepage": "https://reflex-frp.org",
+        "owner": "reflex-frp",
+        "repo": "reflex-platform",
+        "rev": "1aba6f367982bd6dd78ec2fda75ab246a62d32c5",
+        "sha256": "137vg6i8yy4lp6rz4wbvvhfcc9d9qf7j1b3fnng3r7sj63k7j664",
+        "type": "tarball",
+        "url": "https://github.com/reflex-frp/reflex-platform/archive/1aba6f367982bd6dd78ec2fda75ab246a62d32c5.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }

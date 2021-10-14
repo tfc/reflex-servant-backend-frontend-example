@@ -22,6 +22,7 @@ let
   };
 in
 rec {
+  inherit pkgs;
   inherit hnixProject;
   frontend = hnixProject.projectCross.ghcjs.hsPkgs.frontend.components.exes.frontend;
   backend = hnixProject.backend.components.exes.backend;
